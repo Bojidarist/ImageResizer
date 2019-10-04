@@ -6,7 +6,9 @@ namespace ImageResizerConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var aIconGenerator = new AndroidIconGenerator();
+            aIconGenerator.GenerateIcons("testIcon.png", "TestAndroid");
+            Console.WriteLine("Done");
 
             Console.ReadKey();
         }
