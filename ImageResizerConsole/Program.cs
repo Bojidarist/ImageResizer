@@ -6,11 +6,17 @@ namespace ImageResizerConsole
     {
         static void Main(string[] args)
         {
-            var aIconGenerator = new AndroidIconGenerator();
-            aIconGenerator.GenerateIcons("testIcon.png", "TestAndroid");
-            Console.WriteLine("Done");
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Usage: ImageResizer [PathToOriginalImage] [OutputDirectory]");
+                return;
+            }
+            string imagePath = args[0];
+            string outputDirectory = args[1];
 
-            Console.ReadKey();
+            var aIconGenerator = new AndroidIconGenerator();
+            aIconGenerator.GenerateIcons(imagePath, outputDirectory);
+            Console.WriteLine($"Generated icons at: { outputDirectory }");
         }
     }
 }

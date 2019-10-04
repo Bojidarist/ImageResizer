@@ -31,10 +31,8 @@ namespace ImageResizerConsole
                 string[] res = size.Split('x');
                 int width = int.Parse(res[0]);
                 int height = int.Parse(res[1]);
-                using (Image image = Resizer.Resize(pathToIcon, width, height))
-                {
-                    image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-                }
+                using Image image = Resizer.Resize(pathToIcon, width, height);
+                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
             }
         }
 
@@ -61,10 +59,8 @@ namespace ImageResizerConsole
                 string[] res = size.Split('x');
                 int width = int.Parse(res[0]);
                 int height = int.Parse(res[1]);
-                using (Image image = Resizer.Resize(pathToIcon, width, height))
-                {
-                    image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-                }
+                using Image image = Resizer.Resize(pathToIcon, width, height);
+                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
             }
         }
 
@@ -91,10 +87,8 @@ namespace ImageResizerConsole
                 string[] res = size.Split('x');
                 int width = int.Parse(res[0]);
                 int height = int.Parse(res[1]);
-                using (Image image = Resizer.Resize(pathToIcon, width, height))
-                {
-                    image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-                }
+                using Image image = Resizer.Resize(pathToIcon, width, height);
+                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
             }
         }
 
@@ -121,10 +115,8 @@ namespace ImageResizerConsole
                 string[] res = size.Split('x');
                 int width = int.Parse(res[0]);
                 int height = int.Parse(res[1]);
-                using (Image image = Resizer.Resize(pathToIcon, width, height))
-                {
-                    image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-                }
+                using Image image = Resizer.Resize(pathToIcon, width, height);
+                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
             }
         }
 
