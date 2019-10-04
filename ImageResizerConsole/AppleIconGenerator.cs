@@ -4,26 +4,26 @@ using System.IO;
 namespace ImageResizerConsole
 {
     /// <summary>
-    /// Generator for all icon sizes for android
+    /// Generator for all icon sizes for apple products
     /// </summary>
-    public class AndroidIconGenerator
+    public class AppleIconGenerator
     {
         /// <summary>
-        /// Generates all launcher icon sizes
+        /// Generates all icon sizes
         /// </summary>
         /// <param name="pathToIcon">Path to the original icon image</param>
         /// <param name="outputDirectory">The output directory</param>
-        public void GenerateLauncherIcons(string pathToIcon, string outputDirectory = "Output")
+        public void GenerateIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_LauncherIcons");
+            string launcherIconsDir = Path.Combine(outputDirectory, "Apple_Icons");
             if (!Directory.Exists(launcherIconsDir))
             {
                 Directory.CreateDirectory(launcherIconsDir);
             }
 
-            string[] sizes = new string[6]
+            string[] sizes = new string[5]
             {
-                "48x48", "72x72", "96x96", "144x144", "192x192", "512x512"
+                "180x180", "120x120", "167x167", "152x152", "1024x1024"
             };
 
             foreach (string size in sizes)
@@ -37,21 +37,21 @@ namespace ImageResizerConsole
         }
 
         /// <summary>
-        /// Generates all action bar, dialog and tab icon sizes
+        /// Generate all spotlight icon sizes
         /// </summary>
         /// <param name="pathToIcon">Path to the original icon image</param>
         /// <param name="outputDirectory">The output directory</param>
-        public void GenerateActionBarIcons(string pathToIcon, string outputDirectory = "Output")
+        public void GenerateSpotlightIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_ActionBar_Dialog_Tab_Icons");
+            string launcherIconsDir = Path.Combine(outputDirectory, "Apple_SpotlightIcons");
             if (!Directory.Exists(launcherIconsDir))
             {
                 Directory.CreateDirectory(launcherIconsDir);
             }
 
-            string[] sizes = new string[5]
+            string[] sizes = new string[2]
             {
-                "24x24", "36x36", "48x48", "72x72", "96x96"
+                "120x120", "80x80"
             };
 
             foreach (string size in sizes)
@@ -65,21 +65,21 @@ namespace ImageResizerConsole
         }
 
         /// <summary>
-        /// Generates all small contextual icon sizes
+        /// Generates all settings icon sizes
         /// </summary>
         /// <param name="pathToIcon">Path to the original icon image</param>
         /// <param name="outputDirectory">The output directory</param>
-        public void GenerateSmallContextualIcons(string pathToIcon, string outputDirectory = "Output")
+        public void GenerateSettingsIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_SmallContextualIcons");
+            string launcherIconsDir = Path.Combine(outputDirectory, "Apple_SettingsIcons");
             if (!Directory.Exists(launcherIconsDir))
             {
                 Directory.CreateDirectory(launcherIconsDir);
             }
 
-            string[] sizes = new string[5]
+            string[] sizes = new string[2]
             {
-                "16x16", "24x24", "32x32", "48x48", "64x64"
+                "87x87", "58x58"
             };
 
             foreach (string size in sizes)
@@ -99,15 +99,15 @@ namespace ImageResizerConsole
         /// <param name="outputDirectory">The output directory</param>
         public void GenerateNotificationIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_NotificationIcons");
+            string launcherIconsDir = Path.Combine(outputDirectory, "Apple_NotificationIcons");
             if (!Directory.Exists(launcherIconsDir))
             {
                 Directory.CreateDirectory(launcherIconsDir);
             }
 
-            string[] sizes = new string[5]
+            string[] sizes = new string[2]
             {
-                "22x22", "33x33", "44x44", "66x66", "88x88"
+                "60x60", "40x40"
             };
 
             foreach (string size in sizes)
@@ -121,16 +121,16 @@ namespace ImageResizerConsole
         }
 
         /// <summary>
-        /// Generates all types of icons (Launcher, Action bar, Dialog, Tab, Small contextual, Notification)
+        /// Generate ALL icons (Normal, Spotlight, Notification, Settings)
         /// </summary>
         /// <param name="pathToIcon">Path to the original icon image</param>
         /// <param name="outputDirectory">The output directory</param>
-        public void GenerateIcons(string pathToIcon, string outputDirectory = "Output")
+        public void GenerateAllIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            this.GenerateActionBarIcons(pathToIcon, outputDirectory);
-            this.GenerateLauncherIcons(pathToIcon, outputDirectory);
+            this.GenerateIcons(pathToIcon, outputDirectory);
             this.GenerateNotificationIcons(pathToIcon, outputDirectory);
-            this.GenerateSmallContextualIcons(pathToIcon, outputDirectory);
+            this.GenerateSettingsIcons(pathToIcon, outputDirectory);
+            this.GenerateSpotlightIcons(pathToIcon, outputDirectory);
         }
     }
 }
