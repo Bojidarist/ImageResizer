@@ -9,22 +9,17 @@ namespace ImageResizerConsole
     public class AndroidIconGenerator
     {
         /// <summary>
-        /// Generates all launcher icon sizes
+        /// Saves all image sizes
         /// </summary>
-        /// <param name="pathToIcon">Path to the original icon image</param>
-        /// <param name="outputDirectory">The output directory</param>
-        public void GenerateLauncherIcons(string pathToIcon, string outputDirectory = "Output")
+        /// <param name="pathToIcon">The path to the original icon</param>
+        /// <param name="iconsDir">The output path</param>
+        /// <param name="sizes">The sizes to be generated</param>
+        private void SaveImages(string pathToIcon, string iconsDir, string[] sizes)
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_LauncherIcons");
-            if (!Directory.Exists(launcherIconsDir))
+            if (!Directory.Exists(iconsDir))
             {
-                Directory.CreateDirectory(launcherIconsDir);
+                Directory.CreateDirectory(iconsDir);
             }
-
-            string[] sizes = new string[6]
-            {
-                "48x48", "72x72", "96x96", "144x144", "192x192", "512x512"
-            };
 
             foreach (string size in sizes)
             {
@@ -32,8 +27,23 @@ namespace ImageResizerConsole
                 int width = int.Parse(res[0]);
                 int height = int.Parse(res[1]);
                 using Image image = Resizer.Resize(pathToIcon, width, height);
-                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
+                image.Save($"{Path.Combine(iconsDir, size)}.png");
             }
+        }
+
+        /// <summary>
+        /// Generates all launcher icon sizes
+        /// </summary>
+        /// <param name="pathToIcon">Path to the original icon image</param>
+        /// <param name="outputDirectory">The output directory</param>
+        public void GenerateLauncherIcons(string pathToIcon, string outputDirectory = "Output")
+        {
+            string iconsDir = Path.Combine(outputDirectory, "Android_LauncherIcons");
+            string[] sizes = new string[6]
+            {
+                "48x48", "72x72", "96x96", "144x144", "192x192", "512x512"
+            };
+            SaveImages(pathToIcon, iconsDir, sizes);
         }
 
         /// <summary>
@@ -43,25 +53,12 @@ namespace ImageResizerConsole
         /// <param name="outputDirectory">The output directory</param>
         public void GenerateActionBarIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_ActionBar_Dialog_Tab_Icons");
-            if (!Directory.Exists(launcherIconsDir))
-            {
-                Directory.CreateDirectory(launcherIconsDir);
-            }
-
+            string iconsDir = Path.Combine(outputDirectory, "Android_ActionBar_Dialog_Tab_Icons");
             string[] sizes = new string[5]
             {
                 "24x24", "36x36", "48x48", "72x72", "96x96"
             };
-
-            foreach (string size in sizes)
-            {
-                string[] res = size.Split('x');
-                int width = int.Parse(res[0]);
-                int height = int.Parse(res[1]);
-                using Image image = Resizer.Resize(pathToIcon, width, height);
-                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-            }
+            SaveImages(pathToIcon, iconsDir, sizes);
         }
 
         /// <summary>
@@ -71,25 +68,12 @@ namespace ImageResizerConsole
         /// <param name="outputDirectory">The output directory</param>
         public void GenerateSmallContextualIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_SmallContextualIcons");
-            if (!Directory.Exists(launcherIconsDir))
-            {
-                Directory.CreateDirectory(launcherIconsDir);
-            }
-
+            string iconsDir = Path.Combine(outputDirectory, "Android_SmallContextualIcons");
             string[] sizes = new string[5]
             {
                 "16x16", "24x24", "32x32", "48x48", "64x64"
             };
-
-            foreach (string size in sizes)
-            {
-                string[] res = size.Split('x');
-                int width = int.Parse(res[0]);
-                int height = int.Parse(res[1]);
-                using Image image = Resizer.Resize(pathToIcon, width, height);
-                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-            }
+            SaveImages(pathToIcon, iconsDir, sizes);
         }
 
         /// <summary>
@@ -99,25 +83,12 @@ namespace ImageResizerConsole
         /// <param name="outputDirectory">The output directory</param>
         public void GenerateNotificationIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            string launcherIconsDir = Path.Combine(outputDirectory, "Android_NotificationIcons");
-            if (!Directory.Exists(launcherIconsDir))
-            {
-                Directory.CreateDirectory(launcherIconsDir);
-            }
-
+            string iconsDir = Path.Combine(outputDirectory, "Android_NotificationIcons");
             string[] sizes = new string[5]
             {
                 "22x22", "33x33", "44x44", "66x66", "88x88"
             };
-
-            foreach (string size in sizes)
-            {
-                string[] res = size.Split('x');
-                int width = int.Parse(res[0]);
-                int height = int.Parse(res[1]);
-                using Image image = Resizer.Resize(pathToIcon, width, height);
-                image.Save($"{Path.Combine(launcherIconsDir, size)}.png");
-            }
+            SaveImages(pathToIcon, iconsDir, sizes);
         }
 
         /// <summary>
@@ -127,10 +98,10 @@ namespace ImageResizerConsole
         /// <param name="outputDirectory">The output directory</param>
         public void GenerateIcons(string pathToIcon, string outputDirectory = "Output")
         {
-            this.GenerateActionBarIcons(pathToIcon, outputDirectory);
-            this.GenerateLauncherIcons(pathToIcon, outputDirectory);
-            this.GenerateNotificationIcons(pathToIcon, outputDirectory);
-            this.GenerateSmallContextualIcons(pathToIcon, outputDirectory);
+            GenerateActionBarIcons(pathToIcon, outputDirectory);
+            GenerateLauncherIcons(pathToIcon, outputDirectory);
+            GenerateNotificationIcons(pathToIcon, outputDirectory);
+            GenerateSmallContextualIcons(pathToIcon, outputDirectory);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ImageResizerConsole
 
             var aIconGenerator = new AndroidIconGenerator();
             var iIconGenerator = new AppleIconGenerator();
+
             aIconGenerator.GenerateIcons(imagePath, outputDirectory);
             iIconGenerator.GenerateAllIcons(imagePath, outputDirectory);
             Console.WriteLine($"Generated icons at: { outputDirectory }");
